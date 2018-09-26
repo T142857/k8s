@@ -14,12 +14,12 @@ spec:
         command:
         - ./hyperkube
         - proxy
-        - --master=https://171.244.36.148:443
+        - --master=https://{K8_M1}:443
         - --kubeconfig=/etc/ssl/etcd/ssl/kubeconfig.yaml
         - --logtostderr=true
         - --proxy-mode=iptables
         - --masquerade-all
-        - --hostname-override=171.244.36.148
+        - --hostname-override={K8_M1}
         - --cluster-cidr=10.20.0.0/20
         - --v=3
         env:
