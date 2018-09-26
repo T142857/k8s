@@ -1,0 +1,10 @@
+ETCDCTL_SSL_DIR=/etc/ssl/etcd/ssl/
+ETCD_SSL_DIR=/etc/ssl/etcd/ssl/
+ETCDCTL_CA_FILE=/etc/ssl/etcd/ssl/ca.pem
+ETCDCTL_CERT_FILE=/etc/ssl/etcd/ssl/member-labs-k8s-master-02.pem
+ETCDCTL_KEY_FILE=/etc/ssl/etcd/ssl/member-labs-k8s-master-02-key.pem
+ETCDCTL_ENDPOINTS="https://{ip_node1}:2379,https://{ip_node2}:2379,https://{ip_node3}:2379"
+ETCD_ENDPOINTS="https://{ip_node1}:2379,https://{ip_node2}:2379,https://{ip_node3}:2379"
+FLANNELD_ETCD_ENDPOINTS="https://{ip_node1}:2379,https://{ip_node2}:2379,https://{ip_node3}:2379"
+FLANNELD_IFACE="eth1"
+FLANNELD_ETCD_PREFIX="/coreos.com/network"
