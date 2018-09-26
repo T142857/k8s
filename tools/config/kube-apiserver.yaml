@@ -1,0 +1,74 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: kube-apiserver
+  namespace: kube-system
+spec:
+  hostNetwork: true
+  containers:
+  - name: kube-apiserver
+    image: gcr.io/google_containers/hyperkube:v1.11.1
+    command:
+    - /hyperkube
+    - apiserver
+    - --bind-address=0.0.0.0
+    - --etcd-servers=https://171.244.36.148:2379,https://171.244.36.142:2379,https://171.244.36.147:2379
+    - --allow-privileged=true
+    - --service-cluster-ip-range=10.3.0.0/21
+    - --secure-port=443
+    - --insecure-port=8080
+    - --advertise-address=171.244.36.148
+    - --storage-backend=etcd3
+    - --storage-media-type=application/json
+    - --admission-control=NamespaceLifecycle,LimitRanger,ServiceAccount,ResourceQuota
+    - --etcd-certfile=/etc/ssl/etcd/ssl/member-labs-k8s-master-01.pem
+    - --etcd-keyfile=/etc/ssl/etcd/ssl/member-labs-k8s-master-01-key.pem
+    - --tls-cert-file=/etc/ssl/etcd/ssl/member-labs-k8s-master-01.pem
+    - --tls-private-key-file=/etc/ssl/etcd/ssl/member-labs-k8s-master-01-key.pem
+    - --kubelet-certificate-authority=/etc/ssl/etcd/ssl/ca.pem
+    - --kubelet-client-certificate=/etc/ssl/etcd/ssl/member-labs-k8s-master-01.pem
+    - --kubelet-client-key=/etc/ssl/etcd/ssl/member-labs-k8s-master-01-key.pem
+    - --service-account-key-file=/etc/ssl/etcd/ssl/member-labs-k8s-master-01-key.pem
+    - --etcd-cafile=/etc/ssl/etcd/ssl/ca.pem
+    - --client-ca-file=/etc/ssl/etcd/ssl/ca.pem
+    - --runtime-config=extensions/v1beta1/networkpolicies=true,extensions/v1beta1=true
+    - --anonymous-auth=false
+    - --audit-log-path=/var/log/kubernetes/kube-apiserver-audit.log
+    - --audit-log-maxage=30
+    - --audit-log-maxbackup=3
+    - --audit-log-maxsize=100
+    - --v=3
+    livenessProbe:
+      httpGet:
+        host: 127.0.0.1
+        port: 8080
+        path: /healthz
+      initialDelaySeconds: 15
+      timeoutSeconds: 15
+    ports:
+    - containerPort: 443
+      hostPort: 443
+      name: https
+    - containerPort: 8080
+      hostPort: 8080
+      name: local
+    volumeMounts:
+    - mountPath: /etc/ssl/etcd/ssl/
+      name: ssl-certs-kubernetes
+      readOnly: true
+    - mountPath: /etc/ssl/certs
+      name: ssl-certs-host
+      readOnly: true
+    - mountPath: /var/log/kubernetes
+      name: var-log-kubernetes
+      readOnly: false
+  volumes:
+  - hostPath:
+      path: /etc/ssl/etcd/ssl
+    name: ssl-certs-kubernetes
+  - hostPath:
+      path: /usr/share/ca-certificates
+    name: ssl-certs-host
+  - hostPath:
+      path: /var/log/kubernetes
+    name: var-log-kubernetes
