@@ -1,4 +1,4 @@
-### Install ETCD
+# Install ETCD
 
 1. Install etcd manual
 
@@ -8,7 +8,7 @@
 3. Generate Certs
 
 
-### Howto test etcd
+# Howto test etcd
 
 **check cluster health**
 
