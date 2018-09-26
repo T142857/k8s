@@ -12,12 +12,12 @@ spec:
     - /hyperkube
     - apiserver
     - --bind-address=0.0.0.0
-    - --etcd-servers=https://171.244.36.148:2379,https://171.244.36.142:2379,https://171.244.36.147:2379
+    - --etcd-servers=https://{K8S_M1}:2379,https://{K8S_M2}:2379,https://{K8S_M3}:2379
     - --allow-privileged=true
     - --service-cluster-ip-range=10.3.0.0/21
     - --secure-port=443
     - --insecure-port=8080
-    - --advertise-address=171.244.36.148
+    - --advertise-address={K8S_M1}
     - --storage-backend=etcd3
     - --storage-media-type=application/json
     - --admission-control=NamespaceLifecycle,LimitRanger,ServiceAccount,ResourceQuota
