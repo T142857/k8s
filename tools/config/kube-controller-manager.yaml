@@ -12,7 +12,7 @@ spec:
         - ./hyperkube
         - controller-manager
         - --master=https://{K8_M1}:443
-        - --kubeconfig=/etc/kubernetes/ssl/kubeconfig.yaml
+        - --kubeconfig=/etc/ssl/etcd/ssl/kubeconfig.yaml
         - --leader-elect=true
         - --allocate-node-cidrs=true
         - --cluster-cidr=10.20.0.0/20
