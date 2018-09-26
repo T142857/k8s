@@ -20,7 +20,7 @@ HOST=192.168.43.45
 etcdctl -C https://${HOST}:2379 --ca-file /etc/ssl/etcd/ssl/ca.pem cluster-health
 ```
 
-* `**member list**`
+* `member list`
 
 ```
 etcdctl -C https://${HOST}:2379 --ca-file /etc/ssl/etcd/ssl/ca.pem member list
