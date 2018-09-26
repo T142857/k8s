@@ -1,3 +1,12 @@
+### Install ETCD
+
+1. Generate CA
+
+2. Generate Certs
+
+3. Install etcd manual
+
+
 ### Howto test etcd
 
 **check cluster health**
