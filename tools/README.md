@@ -1,10 +1,11 @@
 ### Install ETCD
 
-1. Generate CA
+1. Install etcd manual
 
-2. Generate Certs
+2. Generate CA
 
-3. Install etcd manual
+
+3. Generate Certs
 
 
 ### Howto test etcd
