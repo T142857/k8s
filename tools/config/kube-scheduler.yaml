@@ -11,7 +11,7 @@ spec:
     command:
     - ./hyperkube
     - scheduler
-    - --master=https://171.244.36.148:443
+    - --master=https://{K8_M1}:443
     - --kubeconfig=/etc/ssl/etcd/ssl/kubeconfig.yaml
     - --address=0.0.0.0
     - --leader-elect=true
