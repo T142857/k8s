@@ -11,7 +11,7 @@ spec:
         command:
         - ./hyperkube
         - controller-manager
-        - --master=https://171.244.36.148:443
+        - --master=https://{K8_M1}:443
         - --kubeconfig=/etc/kubernetes/ssl/kubeconfig.yaml
         - --leader-elect=true
         - --allocate-node-cidrs=true
